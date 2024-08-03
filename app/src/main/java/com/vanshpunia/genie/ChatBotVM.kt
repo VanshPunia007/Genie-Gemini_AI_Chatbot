@@ -1,0 +1,25 @@
+package com.vanshpunia.genie
+
+
+import android.util.Log
+import androidx.compose.runtime.mutableStateListOf
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.google.ai.client.generativeai.GenerativeModel
+import kotlinx.coroutines.launch
+
+class ChatBotVM: ViewModel() {
+    val list by lazy {
+        mutableStateListOf<ChatData>()
+    }
+    private val genAI by lazy {
+        GenerativeModel(
+            modelName = "gemini-1.5-pro",
+            apiKey = ApiKey
+        )
+    }
+    fun sendMessage(message: String) = viewModelScope.launch {
+        val char = genAI.startChat()
+        list.add(ChatData(message, ChatRoleEnum.USER.role))
+    }
+}
