@@ -22,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -31,6 +32,7 @@ fun ChatFooter(
     var inputText by remember {
         mutableStateOf("")
     }
+    val focusManager = LocalFocusManager.current
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center,
@@ -51,6 +53,7 @@ fun ChatFooter(
         IconButton(onClick = {
             onClick(inputText)
             inputText = ""
+            focusManager.clearFocus() // Clear focus to close keyboard
         }) {
 
             Icon(
