@@ -1,5 +1,6 @@
 package com.vanshpunia.genie
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.vanshpunia.genie.components.ChatFooter
 import com.vanshpunia.genie.components.ChatHeader
@@ -27,11 +29,13 @@ fun ChatBot(
         ChatHeader()
         
         Box(
-            modifier = Modifier.weight(1f).padding(8.dp),
+            modifier = Modifier
+                .weight(1f)
+                .padding(8.dp),
             contentAlignment = Alignment.Center
         ) {
             if(viewModel.list.isEmpty()){
-                Text(text = "Start a conversation")
+                Image(painter = painterResource(id = R.drawable.logo5), contentDescription = null)
             }else{
                 ChatList(list = viewModel.list)
             }

@@ -1,6 +1,8 @@
 package com.vanshpunia.genie
 
 
+import android.content.Context
+import android.content.Intent
 import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
@@ -15,7 +17,7 @@ class ChatBotVM: ViewModel() {
     }
     private val genAI by lazy {
         GenerativeModel(
-            modelName = "gemini-1.5-pro",
+            modelName = "gemini-1.5-flash",
             apiKey = ApiKey
         )
     }
@@ -26,7 +28,7 @@ class ChatBotVM: ViewModel() {
             content(ChatRoleEnum.USER.role) {
                 text(message)
             }
-        ).text?.let {
+        ).text?.trimEnd()?.let {
             list.add(ChatData(it, ChatRoleEnum.MODEL.role))
         }
     }

@@ -1,12 +1,14 @@
 package com.vanshpunia.genie.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.Send
 import androidx.compose.material3.Icon
@@ -37,17 +39,19 @@ fun ChatFooter(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center,
         modifier = Modifier
+            .clip(RoundedCornerShape(16.dp))
             .fillMaxWidth()
             .padding(10.dp)
-            .background(Color.LightGray)
     ) {
         OutlinedTextField(
             value = inputText, onValueChange = { inputText = it },
             placeholder = { Text(text = "Enter your message") },
             singleLine = true,
             modifier = Modifier
-                .weight(1f)
-                .background(Color.Gray)
+                .fillMaxWidth()
+                .weight(3f)
+                .background(color = Color(0xFF000D33)),
+            shape = RoundedCornerShape(16.dp)
         )
 
         IconButton(onClick = {
@@ -59,9 +63,10 @@ fun ChatFooter(
             Icon(
                 Icons.AutoMirrored.Rounded.Send, contentDescription = null,
                 modifier = Modifier
-                    .size(40.dp)
+                    .size(60.dp)
+                    .border(2.dp, Color.Cyan, RoundedCornerShape(16.dp))
                     .clip(CircleShape)
-                    .background(Color.Black)
+                    .background(color = Color(0xFF000D33))
                     .padding(8.dp), tint = Color.White
             )
         }
